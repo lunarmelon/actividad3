@@ -131,6 +131,19 @@ def move():
     dot(20, "yellow")
 
     for point, course in ghosts:
+        """Check distance between Pac-Man and ghosts"""
+        if abs(pacman - point) < 50:
+            """Move the ghosts only if Pac-Man is close"""
+            direction = pacman - point
+            if direction.x > 0:
+                course.x = 5
+            elif direction.x < 0:
+                course.x = -5
+            if direction.y > 0:
+                course.y = 5
+            elif direction.y < 0:
+                course.y = -5
+
         if valid(point + course):
             point.move(course)
         else:
@@ -154,7 +167,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 75)
 
 
 def change(x, y):
